@@ -1857,7 +1857,7 @@ namespace UnityEngine.Experimental.Rendering.HDPipeline
                 }
                 else
                 {
-                    m_LightLoop.SetContactShadowsTexture(hdCamera, m_ContactShadowBuffer, cmd);
+                    SetContactShadowsTexture(hdCamera, m_ContactShadowBuffer, cmd);
                 }
 
 
