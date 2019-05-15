@@ -80,17 +80,17 @@ namespace UnityEditor.ShaderGraph
                 if(generationMode == GenerationMode.Preview && slots.Count != 0)
                 {
                     slots.OrderBy(s => s.id);
-                    visitor.AddShaderChunk(string.Format("{0} {1};",
+                    visitor.AddShaderChunk(string.Format("{0} _{1}_{2};",
                         NodeUtils.ConvertConcreteSlotValueTypeToString(precision, slots[0].concreteValueType),
-                        GetVariableNameForSlot(slots[0].id)));
+                        GetVariableNameForNode(), NodeUtils.GetHLSLSafeName(slots[0].shaderOutputName)));
                 }
                 return;
             }
             
             foreach (var argument in slots)
-                visitor.AddShaderChunk(string.Format("{0} {1};",
+                visitor.AddShaderChunk(string.Format("{0} _{1}_{2};",
                     NodeUtils.ConvertConcreteSlotValueTypeToString(precision, argument.concreteValueType),
-                    GetVariableNameForSlot(argument.id)));
+                    GetVariableNameForNode(), NodeUtils.GetHLSLSafeName(argument.shaderOutputName)));
 
             string call = string.Format("{0}_{1}(", functionName, precision);
             bool first = true;
@@ -112,7 +112,7 @@ namespace UnityEditor.ShaderGraph
                 if (!first)
                     call += ", ";
                 first = false;
-                call += GetVariableNameForSlot(argument.id);
+                call += string.Format("_{0}_{1}", GetVariableNameForNode(), NodeUtils.GetHLSLSafeName(argument.shaderOutputName));
             }
             call += ");";
             visitor.AddShaderChunk(call, true);
