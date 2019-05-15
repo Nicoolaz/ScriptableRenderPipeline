@@ -12,7 +12,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - The `Custom Function Node` now uses an object field to reference its source when using `File` mode.
 
 ### Fixed
-- Fixed an error in `Custom Function Node` port naming.
 - `Sampler State` properties and nodes now serialize correctly.
 - Labels in the Custom Port menu now use the correct coloring when using the Personal skin.
 - When you perform an undo or redo to an inactive Shader Graph window, the window no longer breaks.
